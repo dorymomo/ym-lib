@@ -1,0 +1,31 @@
+:root{
+  --bg:#fff8ec; --card:#ffffff; --ink:#243047; --muted:#6e7890;
+  --primary:#5f7cff; --primary2:#8c6cf2; --good:#2dbb82; --warn:#ffb23e; --bad:#ef6b73;
+  --line:#e7eaf1;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:linear-gradient(180deg,#fffaf1,#f5f8ff);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans KR",Segoe UI,sans-serif}
+body{min-height:100vh}
+a{text-decoration:none;color:inherit}
+.shell{width:min(100%,680px);margin:0 auto;padding:18px 16px 36px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.brand{font-size:14px;font-weight:800;color:#59657a}.progress{font-size:13px;font-weight:800;color:#6f7890;background:#fff;padding:8px 12px;border-radius:999px;border:1px solid var(--line)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:0 14px 36px rgba(52,66,101,.09)}
+.hero{padding:28px 24px 24px;text-align:center}
+.badge{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;background:#f0f3ff;color:#5266d8;font-size:13px;font-weight:900;margin-bottom:10px}
+h1{font-size:clamp(29px,8vw,42px);line-height:1.15;margin:8px 0 12px;letter-spacing:-1.4px}
+.lead{font-size:17px;line-height:1.65;color:var(--muted);margin:0 auto;max-width:500px}
+.illustration{margin:20px auto 0;width:100%;max-width:560px;aspect-ratio:16/10;border-radius:22px;background:#eef2ff;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #e0e5f4;position:relative}
+.illustration img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-placeholder{padding:24px;text-align:center;color:#66718a}.photo-placeholder .emoji{font-size:72px;display:block;margin-bottom:12px}.photo-placeholder strong{font-size:22px}.photo-placeholder small{display:block;margin-top:8px;line-height:1.5}
+.body{padding:22px 24px 26px}.mission{font-size:20px;font-weight:900;line-height:1.45;margin:0 0 10px}.hintbox{background:#fff8dc;border:1px solid #f4e6a8;border-radius:18px;padding:14px 16px;margin:14px 0;color:#67551d;font-size:15px;line-height:1.55}
+.form{display:grid;gap:11px;margin-top:18px}.answer{width:100%;height:56px;border-radius:16px;border:2px solid #dfe4ef;padding:0 16px;font-size:18px;font-weight:800;text-align:center;outline:none;background:#fff}.answer:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(95,124,255,.12)}
+.btn{min-height:54px;border:0;border-radius:16px;padding:0 20px;font-size:17px;font-weight:900;cursor:pointer}.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff}.btn-secondary{background:#f3f5f9;color:#3f4b61}.btn:active{transform:translateY(1px)}
+.feedback{min-height:26px;margin-top:12px;text-align:center;font-weight:900;font-size:15px}.ok{color:var(--good)}.no{color:var(--bad)}
+.direction{display:none;margin-top:16px;padding:17px;border-radius:18px;background:#eefaf6;border:1px solid #cdeee1;color:#216e56;text-align:center;font-weight:900;line-height:1.5}.direction.show{display:block}.arrow{font-size:28px;display:block;margin:4px 0}
+.actions{display:grid;gap:10px;margin-top:16px}.next-btn{display:none}.next-btn.show{display:block}
+.footer-note{font-size:12px;color:#8a93a5;text-align:center;margin-top:14px;line-height:1.5}
+.start-steps{display:grid;gap:10px;margin:20px 0;text-align:left}.step-row{display:flex;gap:12px;align-items:flex-start;background:#f8f9fc;border:1px solid #edf0f5;padding:13px;border-radius:16px}.step-num{width:34px;height:34px;border-radius:50%;background:#e9edff;color:#5266d8;display:grid;place-items:center;font-weight:900;flex:0 0 auto}.step-text strong{display:block;margin-bottom:3px}.step-text span{color:var(--muted);font-size:14px;line-height:1.45}
+.reward{font-size:78px;margin:8px 0}.code-box{margin-top:18px;padding:18px;border-radius:18px;background:#f5f7fb;border:2px dashed #cfd6e5;font-size:24px;font-weight:1000;letter-spacing:2px;text-align:center}
+.confetti{font-size:34px;letter-spacing:7px;margin-bottom:4px}
+@media(max-width:420px){.shell{padding-left:12px;padding-right:12px}.hero,.body{padding-left:18px;padding-right:18px}.lead{font-size:15px}.mission{font-size:18px}}
