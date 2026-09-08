@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="편의점 그림">
+  <rect width="800" height="500" fill="#f3f8f2"/>
+  <rect x="135" y="145" width="530" height="260" rx="18" fill="#ffffff" stroke="#b8c8bd" stroke-width="8"/>
+  <rect x="115" y="100" width="570" height="88" rx="18" fill="#71c889"/>
+  <text x="400" y="160" font-family="sans-serif" font-size="48" font-weight="900" text-anchor="middle" fill="#ffffff">편 의 점</text>
+  <rect x="195" y="235" width="170" height="170" fill="#d8efff" stroke="#8cb5ce" stroke-width="6"/>
+  <rect x="455" y="235" width="115" height="170" fill="#eaf3e5" stroke="#9bb397" stroke-width="6"/>
+  <rect x="385" y="220" width="40" height="185" fill="#f5f5f5" stroke="#c8c8c8" stroke-width="5"/>
+  <text x="400" y="458" font-family="sans-serif" font-size="30" font-weight="700" text-anchor="middle" fill="#607089">가까운 편의점</text>
+</svg>

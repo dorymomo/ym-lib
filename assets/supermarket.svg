@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="슈퍼마켓 그림">
+  <rect width="800" height="500" fill="#eef6ff"/>
+  <rect x="145" y="155" width="510" height="245" rx="18" fill="#ffffff" stroke="#bac7d9" stroke-width="8"/>
+  <rect x="125" y="110" width="550" height="85" rx="18" fill="#ffd86b"/>
+  <text x="400" y="168" font-family="sans-serif" font-size="52" font-weight="900" text-anchor="middle" fill="#31405b">슈 퍼</text>
+  <rect x="205" y="245" width="150" height="155" fill="#cfe8ff" stroke="#8ea9c5" stroke-width="6"/>
+  <rect x="445" y="245" width="130" height="155" fill="#d9edcf" stroke="#93aa89" stroke-width="6"/>
+  <circle cx="235" cy="225" r="22" fill="#ff8e78"/><circle cx="300" cy="225" r="22" fill="#8fcf83"/><circle cx="365" cy="225" r="22" fill="#f1c458"/>
+  <text x="400" y="455" font-family="sans-serif" font-size="30" font-weight="700" text-anchor="middle" fill="#607089">우리 동네 슈퍼</text>
+</svg>

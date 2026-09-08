@@ -29,3 +29,4 @@ h1{font-size:clamp(29px,8vw,42px);line-height:1.15;margin:8px 0 12px;letter-spac
 .reward{font-size:78px;margin:8px 0}.code-box{margin-top:18px;padding:18px;border-radius:18px;background:#f5f7fb;border:2px dashed #cfd6e5;font-size:24px;font-weight:1000;letter-spacing:2px;text-align:center}
 .confetti{font-size:34px;letter-spacing:7px;margin-bottom:4px}
 @media(max-width:420px){.shell{padding-left:12px;padding-right:12px}.hero,.body{padding-left:18px;padding-right:18px}.lead{font-size:15px}.mission{font-size:18px}}
+.reward-instruction{margin:4px 0 8px;padding:22px 18px;border-radius:20px;background:#fff4cd;border:2px solid #f0d56d;color:#594716;text-align:center;font-size:20px;font-weight:1000;line-height:1.55}
