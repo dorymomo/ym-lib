@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>도서관 길찾기 탐험</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Pretendard", "Noto Sans KR", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #222;
+    }
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #eef2ff;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .progress {
+      font-weight: 800;
+      font-size: 14px;
+      color: #555;
+    }
+    h1, h2 {
+      margin-top: 0;
+      line-height: 1.3;
+    }
+    h1 { font-size: 34px; }
+    h2 { font-size: 28px; }
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+    }
+    .image-box {
+      width: 100%;
+      min-height: 280px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #f0f2f7, #e7ebf3);
+      border: 3px dashed #c8cfda;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      margin: 22px 0;
+      color: #666;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .placeholder-icon {
+      font-size: 64px;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .question {
+      font-size: 20px;
+      font-weight: 800;
+      margin: 20px 0 12px;
+    }
+    .answer-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    input[type="text"] {
+      flex: 1 1 260px;
+      min-width: 0;
+      font-size: 18px;
+      padding: 15px 16px;
+      border-radius: 14px;
+      border: 2px solid #cfd5df;
+      outline: none;
+    }
+    input[type="text"]:focus {
+      border-color: #6b7cff;
+    }
+    button {
+      border: 0;
+      border-radius: 14px;
+      padding: 15px 20px;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .primary {
+      background: #4f63ff;
+      color: white;
+    }
+    .secondary {
+      background: #eef1f6;
+      color: #222;
+    }
+    .message {
+      margin-top: 14px;
+      min-height: 28px;
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .success-msg { color: #14843c; }
+    .error-msg { color: #c03a2b; }
+    .direction {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 16px;
+      background: #f6f8ff;
+      font-size: 18px;
+      font-weight: 800;
+      display: none;
+    }
+    .reward {
+      text-align: center;
+      padding: 18px 0;
+    }
+    .reward .big {
+      font-size: 70px;
+      margin-bottom: 8px;
+    }
+    .reward-note {
+      margin-top: 20px;
+      padding: 22px;
+      border-radius: 18px;
+      background: #fff7d6;
+      font-size: 20px;
+      line-height: 1.7;
+      font-weight: 800;
+    }
+    .hidden { display: none; }
+    .footer-note {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #777;
+      text-align: center;
+    }
+    @media (max-width: 520px) {
+      .card { padding: 20px; border-radius: 18px; }
+      h1 { font-size: 28px; }
+      h2 { font-size: 24px; }
+      p, .question { font-size: 17px; }
+      .image-box { min-height: 220px; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <span class="badge">도서관 길찾기 탐험</span>
+        <span class="progress" id="progressText">시작</span>
+      </div>
+
+      <section id="screen-start">
+        <h1>도서관을 찾아 떠나볼까요?</h1>
+        <p>
+          사진을 보고 장소 이름을 맞히면 다음 장소로 이동할 수 있어요.
+          총 4개의 장소를 지나 도서관에 도착해 보세요!
+        </p>
+        <div class="image-box">
+          <div>
+            <span class="placeholder-icon">🗺️</span>
+            길찾기 탐험을 시작해요!
+          </div>
+        </div>
+        <button class="primary" id="startBtn" type="button">탐험 시작!</button>
+      </section>
+
+      <section id="screen-game" class="hidden">
+        <h2 id="stageTitle"></h2>
+        <p id="stageGuide"></p>
+
+        <div class="image-box" id="imageBox">
+          <div>
+            <span class="placeholder-icon" id="placeIcon">📍</span>
+            <span id="imageText">장소 사진이 들어갈 자리입니다</span>
+          </div>
+        </div>
+
+        <div class="question">이 장소의 이름은 무엇일까요?</div>
+
+        <form id="answerForm">
+          <div class="answer-row">
+            <input id="answerInput" type="text" placeholder="장소 이름을 입력하세요" autocomplete="off" />
+            <button class="primary" type="submit">정답 확인</button>
+          </div>
+        </form>
+
+        <div class="message" id="message" aria-live="polite"></div>
+        <div class="direction" id="directionBox"></div>
+        <button class="primary hidden" id="nextBtn" type="button">다음 장소로 이동</button>
+      </section>
+
+      <section id="screen-finish" class="hidden">
+        <div class="reward">
+          <div class="big">🎉📚</div>
+          <h1>도서관 도착!</h1>
+          <p>모든 장소를 맞혔어요. 길찾기 탐험 성공!</p>
+
+          <div class="reward-note">
+            이 화면을 사서 선생님에게 보여주면<br>
+            상품을 받을 수 있어요!
+          </div>
+
+          <button class="secondary" id="restartBtn" type="button" style="margin-top:20px;">
+            처음부터 다시하기
+          </button>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        ※ 실제 사용할 장소 사진은 나중에 이 화면에 넣으면 됩니다.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const stages = [
+      {
+        title: "1번째 장소",
+        guide: "첫 번째 장소를 맞혀보세요!",
+        answer: ["경찰서"],
+        icon: "🚓",
+        imageText: "경찰서 사진을 넣을 자리",
+        direction: "정답! 경찰서에서 오른쪽으로 이동해 보세요. ➡️"
+      },
+      {
+        title: "2번째 장소",
+        guide: "두 번째 장소는 어디일까요?",
+        answer: ["메가박스", "메가 박스"],
+        icon: "🎬",
+        imageText: "메가박스 사진을 넣을 자리",
+        direction: "잘했어요! 메가박스에서 왼쪽으로 이동해 보세요. ⬅️"
+      },
+      {
+        title: "3번째 장소",
+        guide: "이제 세 번째 장소를 찾아볼까요?",
+        answer: ["슈퍼", "슈퍼마켓", "마트"],
+        icon: "🛒",
+        imageText: "슈퍼 사진을 넣을 자리",
+        direction: "정답이에요! 슈퍼를 지나 앞으로 이동해 보세요. ⬆️"
+      },
+      {
+        title: "4번째 장소",
+        guide: "마지막 장소예요. 조금만 더 힘내요!",
+        answer: ["편의점"],
+        icon: "🏪",
+        imageText: "편의점 사진을 넣을 자리",
+        direction: "정답! 이제 도서관에 도착했어요! 📚"
+      }
+    ];
+
+    let currentStage = 0;
+
+    const startScreen = document.getElementById("screen-start");
+    const gameScreen = document.getElementById("screen-game");
+    const finishScreen = document.getElementById("screen-finish");
+    const progressText = document.getElementById("progressText");
+    const stageTitle = document.getElementById("stageTitle");
+    const stageGuide = document.getElementById("stageGuide");
+    const placeIcon = document.getElementById("placeIcon");
+    const imageText = document.getElementById("imageText");
+    const answerInput = document.getElementById("answerInput");
+    const answerForm = document.getElementById("answerForm");
+    const message = document.getElementById("message");
+    const directionBox = document.getElementById("directionBox");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function normalize(text) {
+      return text.trim().replace(/\s+/g, "").toLowerCase();
+    }
+
+    function showStage(index) {
+      currentStage = index;
+      const stage = stages[index];
+
+      progressText.textContent = `${index + 1} / ${stages.length}`;
+      stageTitle.textContent = stage.title;
+      stageGuide.textContent = stage.guide;
+      placeIcon.textContent = stage.icon;
+      imageText.textContent = stage.imageText;
+      answerInput.value = "";
+      answerInput.disabled = false;
+      message.textContent = "";
+      message.className = "message";
+      directionBox.textContent = "";
+      directionBox.style.display = "none";
+      nextBtn.classList.add("hidden");
+      answerInput.focus();
+    }
+
+    document.getElementById("startBtn").addEventListener("click", () => {
+      startScreen.classList.add("hidden");
+      finishScreen.classList.add("hidden");
+      gameScreen.classList.remove("hidden");
+      showStage(0);
+    });
+
+    answerForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const value = normalize(answerInput.value);
+      if (!value) {
+        message.textContent = "장소 이름을 입력해 주세요!";
+        message.className = "message error-msg";
+        return;
+      }
+
+      const stage = stages[currentStage];
+      const isCorrect = stage.answer.some(a => normalize(a) === value);
+
+      if (!isCorrect) {
+        message.textContent = "앗! 사진을 다시 잘 살펴보고 한 번 더 맞혀볼까요?";
+        message.className = "message error-msg";
+        return;
+      }
+
+      message.textContent = "정답이에요! 아주 잘했어요!";
+      message.className = "message success-msg";
+      directionBox.textContent = stage.direction;
+      directionBox.style.display = "block";
+      answerInput.disabled = true;
+
+      if (currentStage === stages.length - 1) {
+        nextBtn.textContent = "도서관 도착하기";
+      } else {
+        nextBtn.textContent = "다음 장소로 이동";
+      }
+
+      nextBtn.classList.remove("hidden");
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (currentStage < stages.length - 1) {
+        showStage(currentStage + 1);
+      } else {
+        gameScreen.classList.add("hidden");
+        finishScreen.classList.remove("hidden");
+        progressText.textContent = "도착!";
+      }
+    });
+
+    document.getElementById("restartBtn").addEventListener("click", () => {
+      currentStage = 0;
+      finishScreen.classList.add("hidden");
+      gameScreen.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+      progressText.textContent = "시작";
+    });
+  </script>
+</body>
+</html>
