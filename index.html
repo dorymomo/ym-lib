@@ -80,7 +80,7 @@ form.addEventListener("submit",e=>{
  const s=stages[idx],ok=s.answers.some(a=>norm(a)===v);
  if(!ok){msg.textContent="앗! 사진을 다시 잘 살펴볼까요?";msg.className="msg bad";return}
  locked=true;answer.disabled=true;msg.textContent="정답이에요!";msg.className="msg good";dir.textContent=s.dir;dir.style.display="block";
- timer=setTimeout(()=>{if(idx<stages.length-1)showStage(idx+1);else{game.classList.add("hidden");finish.classList.remove("hidden");progress.textContent="도착!"}},1600);
+ timer=setTimeout(()=>{if(idx<stages.length-1)showStage(idx+1);else{game.classList.add("hidden");finish.classList.remove("hidden");progress.textContent="도착!"}},3000);
 });
 document.getElementById("restart").addEventListener("click",()=>{clearTimeout(timer);finish.classList.add("hidden");game.classList.add("hidden");start.classList.remove("hidden");progress.textContent="시작"});
 </script>
